@@ -53,3 +53,10 @@ curl http://localhost:5000/api/zip_code_distance/ -d '{"zip_codes": ["10008", "1
  * POST data must be JSON and not form-data or x-www-form-urlencoded
  * A Valid JSON object having list of zip codes must be provided. e.g {"zip_codes": ["21061", "10008"]}
  * If a zip code is invalid, a message will return in response for that zip code instead of distance
+
+<br/>
+#####fatal error: sqlite3.h: No such file or directory
+If you are getting this error on Ubuntu or any other *nix, execute below command
+```
+sudo apt-get install libsqlite3-dev
+```
