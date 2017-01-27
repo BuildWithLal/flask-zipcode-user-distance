@@ -1,0 +1,26 @@
+from flask import Flask, request
+from flask_restful import Resource, Api
+from werkzeug.contrib.fixers import ProxyFix
+import geocoder
+
+app = Flask(__name__)
+api = Api(app)
+
+app.wsgi_app = ProxyFix(app.wsgi_app)
+
+
+class TodoList(Resource):
+    def post(self):
+        data = request.get_json(force=True)
+        # print(data.get('zip_codes'))
+        # print(request.remote_addr)
+        g = geocoder.ip('39.33.221.90')
+        print(g.postal)
+        for zipcode in data.get('zip_codes', []):
+
+        return {'zip_codes': g.postal}, 201
+
+api.add_resource(TodoList, '/api/')
+
+if __name__ == '__main__':
+    app.run(debug=True)
