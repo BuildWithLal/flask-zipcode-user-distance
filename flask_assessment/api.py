@@ -28,6 +28,7 @@ class ZipcodeDistance(Resource):
         if data and data.get('zip_codes') and isinstance(data.get('zip_codes'), list):
 
             try:
+                # get user's Geo Data from user's IP address
                 g = geocoder.ip(request.remote_addr)
             except Exception as err:
                 return {'error': settings.CONNECTION_ERROR}, 400
@@ -35,11 +36,10 @@ class ZipcodeDistance(Resource):
             # if user is from local machine instead of a real IP (server machine) then get user's real IP address
             if g.ip == '127.0.0.1':
                 user_ip = urlopen('http://ip.42.pl/raw').read()
-
                 # get user's Geo Data from user's IP address
                 g = geocoder.ip(user_ip)
-                user_lat_lng = g.lat, g.lng
 
+            user_lat_lng = g.lat, g.lng
             result = dict()
 
             # iterate through each zip code and calculate distance relative to user's lat, long
