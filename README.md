@@ -42,6 +42,14 @@ python api.py
 ```
 
 <br/>
+#####API Endpoints
+```
+POST http://localhost:5000/api/zip_code_distance/
+POST Data Type: JSON
+POST Data: {"zip_codes": ["10008", "10009", "21061"]}
+```
+
+<br/>
 #####Test API
 execute command from terminal
 ```
