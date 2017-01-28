@@ -21,7 +21,6 @@ class ZipcodeDistance(Resource):
         try:
             data = request.get_json(force=True)
         except Exception as err:
-            print(err)
             return {'error': settings.INVALID_JSON}, 400
 
         # make sure user has submitted JSON data i.e list of zip codes. Format: {"zip_codes": ["44000", "10008"]}
